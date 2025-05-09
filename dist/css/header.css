@@ -1,0 +1,202 @@
+/* Estilos Base */
+:root {
+  --primary-color: #3a86ff;
+  --secondary-color: #00f5d4;
+  --text-color: #ffffff;
+  --background-dark: rgba(10, 15, 30, 0.85);
+  --glow: 0 0 10px rgba(58, 134, 255, 0.6);
+  --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body {
+  margin: 0;
+  font-family: "Outfit", "Segoe UI", sans-serif;
+}
+
+/* Header Glassmorphism */
+.glassmorphism {
+  background: var(--background-dark);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Logo Styling */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-icon {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--glow);
+}
+
+.logo i {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #fff, #e0e0e0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
+}
+
+.highlight {
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Navigation */
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  padding: 0.5rem 0.75rem;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.nav-link:hover {
+  color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+.nav-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  margin-right: 8px;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.nav-link:hover .nav-dot {
+  opacity: 1;
+}
+
+.cta-button {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  box-shadow: var(--glow);
+  transition: var(--transition);
+}
+
+.cta-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 0 20px rgba(58, 134, 255, 0.8);
+  color: white;
+}
+
+/* Mobile Menu */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(58, 134, 255, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(58, 134, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(58, 134, 255, 0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .main-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--background-dark);
+    clip-path: circle(0px at top right);
+    transition: clip-path 0.5s ease-in-out;
+    opacity: 0;
+  }
+
+  .main-nav.active {
+    clip-path: circle(1500px at top right);
+    opacity: 1;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1rem;
+  }
+
+  .nav-link {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .nav-dot {
+    opacity: 1;
+  }
+}
